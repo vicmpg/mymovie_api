@@ -22,31 +22,51 @@ Users will be able to sign up, update their personal information, and create a l
             <td>GET / Read</td>
             <td>None</td>
             <td>None</td>
+            <td>A JSON object of all the movies</td>
             <td></td>
+        </tr>
+        <tr>
+            <td>Returns all current users</td>
+            <td>/users</td>
+            <td>GET</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td>A JSON object of all the current users</td>
+        </tr>
+        <tr>
+            <td>Returns a specific user by name</td>
+            <td>/users/:userName</td>
+            <td>GET</td>
+            <td>:userName</td>
+            <td>N/A</td>
+            <td>A JSON object of all a specific user</td>
         </tr>
         <tr>
             <td>Return data (description, genre, director, image URL, whether it is featured or not) about a single
                 movie by title to the user</td>
             <td>/movies/:title</td>
             <td>GET / Read</td>
-            <td>[title]</td>
+            <td>:title</td>
             <td>None</td>
+            <td>A JSON object of one movie</td>
             <td></td>
         </tr>
         <tr>
             <td>Return data about a genre (description) by name/title (e.g., “Computer-animated”)</td>
             <td>/movies/genres/:genreName</td>
             <td>GET / Read</td>
-            <td>[genreName]</td>
+            <td>:genreName</td>
             <td>None</td>
+            <td>returns all movies with the genre searched</td>
             <td></td>
         </tr>
         <tr>
             <td>Return data about a director (bio, birth year, death year) by name</td>
             <td>/movies/directors/:directorName</td>
             <td>GET / Read</td>
-            <td>[directorName]</td>
+            <td>:directorName</td>
             <td>None</td>
+            <td>A JSON object of a especific director</td>
             <td></td>
         </tr>
         <tr>
@@ -55,39 +75,76 @@ Users will be able to sign up, update their personal information, and create a l
             <td>POST / Create</td>
             <td>None</td>
             <td></td>
-            <td></td>
+            <td>You Must Enter a JSON object of a new user ie.{
+                "Username": "Eric_username",
+                "Password": "ericpassword",
+                "Email": "Eric@email.com",
+                "Birthday": "01-16-97"
+                } *note Username,Password,Email,Birthday must be capitalized and all fields must be field out. </td>
+            <td>A JSON object of a new user added plus an ID number and empty array to store users favorite movies
+                ie. {
+                "Username": "Eric_username",
+                "Password": "ericpassword",
+                "Email": "Eric@email.com",
+                "Birthday": "1997-01-16T05:00:00.000Z",
+                "FavoriteMovies": [],
+                "_id": "65148a10b66c70e353fa199c",
+                "__v": 0
+                }</td>
         </tr>
         <tr>
             <td>Allow users to update their user info (username)</td>
-            <td>/users/:id</td>
+            <td>/users/:Username</td>
             <td>PUT / Update</td>
-            <td>[id]</td>
-            <td></td>
-            <td></td>
+            <td>:Username</td>
+            <td>A JSON object of the four user categories, each categorize ie. Username, Password etc. must be
+                capitlized and filled in even if its not updated. For example {
+                "Username": "Frank_LovesMovies",
+                "Password": "Password02",
+                "Email": "frank@email.com",
+                "Birthday": "1989-02-02"
+                }
+            </td>
+            <td>A JSON object of the updated information you changed and the information you didn't change. If you
+                updated all categories all information when come back updated ie. {
+                "_id": "650dc62f76b9bbd226a7c19f",
+                "Name": "Frank",
+                "Username": "Frank_LovesMovies",
+                "Password": "Password02",
+                "Email": "frank@email.com",
+                "Birthday": "1989-02-02T05:00:00.000Z",
+                "FavoriteMovies": [],
+                "__v": 0
+                } </td>
         </tr>
         <tr>
             <td>Allow users to add a movie to their list of favorites</td>
-            <td>/users/:id/:movieTitle</td>
+            <td>/users/:Username/:MovieID</td>
             <td>POST / Create</td>
-            <td>[id], [movieTitle]</td>
-            <td>None</td>
+            <td>:Username, :MovieID</td>
+            <td>In the url /:MovieID use the ObjectID of the movie document in the movie collection of a specific
+                movie you like.</td>
+            <td>it will return a JSON Object with the ussers id, username,password email, birthday and the favorite
+                movie you added will be in the array of favorite movies </td>
             <td></td>
         </tr>
         <tr>
             <td>Allow users to remove a movie from their list of favorites</td>
-            <td>/users/:id/:movieTitle</td>
+            <td>/users/:userName/:MovieID</td>
             <td>DELETE / Delete</td>
-            <td>[id], [movieTitle]</td>
-            <td>none</td>
+            <td>:Username, :MovieID</td>
+            <td>In the url /:MovieID use the ObjectID of the movie document in the movie collection of a specific
+                returns a JSON object of all users information and updated FavoriteMovies missing the movie you
+                requested to be deleted.</td>
             <td></td>
         </tr>
         <tr>
             <td>Allow existing users to deregister</td>
-            <td>/users/:id</td>
+            <td>/users/:Username</td>
             <td>DELETE / Delete</td>
-            <td>[id]</td>
+            <td>:Username</td>
             <td>none</td>
-            <td></td>
+            <td>Response text saying ie. This "User" has been deleted </td>
         </tr>
     </tbody>
 </table>
