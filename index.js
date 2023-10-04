@@ -37,7 +37,8 @@ const Movies = Models.Movie;
 const Users = Models.User;
 
 
-mongoose.connect('mongodb://127.0.0.1/cfDB', { useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect('mongodb://127.0.0.1/cfDB', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // create a write stream (in append mode)
 // a ‘log.txt’ file is created in root directory
@@ -281,3 +282,11 @@ app.use((err, req, res, next) => {
     console.error(err.stack); // information about the error will be logged to the terminal, then logged in the console
     res.status(500).send('Something broke!')
 });
+
+
+
+
+
+
+
+
