@@ -39,8 +39,8 @@ const Users = Models.User;
 
 
 //mongoose.connect('mongodb://127.0.0.1/cfDB', { useNewUrlParser: true, useUnifiedTopology: true });
-//mongoose.connect('mongodb+srv://vicmpg:Camilota55@myflixdb.oqxofb6.mongodb.net/cfDB?retryWrites=true&w=majority',{ useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect('mongodb+srv://vicmpg:Camilota55@myflixdb.oqxofb6.mongodb.net/cfDB?retryWrites=true&w=majority',{ useNewUrlParser: true, useUnifiedTopology: true });
+//mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // create a write stream (in append mode)
 // a ‘log.txt’ file is created in root directory
